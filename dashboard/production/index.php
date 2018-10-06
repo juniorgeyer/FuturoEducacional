@@ -12,8 +12,7 @@ include('verifica_login.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
-
-    <title>Grupo Futuro Educacional </title>
+       <title>Somar! </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -67,11 +66,12 @@ include('verifica_login.php');
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-plus"></i> Cadastrar <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="formProf.php">Professor</a></li>
-                      <li><a href="formRH.php">RH</a></li>
-                      <li><a href="formSG.php">Setor Gráfico</a></li>
+                      <li><a href="addPessoas.php">Pessoas</a></li>
+                      <li><a href="addcategoria.php">Categorias</a></li>
+                      <li><a href="addCriterios.php">Critérios Bonificação</a></li>
                       <li><a href="formADM.php">Administrativo</a></li>
-                      
+                      <li><a href="formAcade.php">Administrativo</a></li>
+                  
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Editar <span class="fa fa-chevron-down"></span></a>
@@ -337,48 +337,36 @@ include('verifica_login.php');
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
                   <div class="x_title">
-                    <h2>Top Campaign Performance</h2>
+                    <h2>Pontuação mais alta</h2>
                     <div class="clearfix"></div>
                   </div>
 
-                  <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Facebook Campaign</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Twitter Campaign</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Conventional Media</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Bill boards</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
+                              <?php
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from criterio";
+                              $result= mysqli_query($conexao, $query);
+                              
+                                if (mysqli_num_rows($result) > 0) {
+                                  while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                                    $nome_criterios = $row['nome_criterios'];
+                                    $valor_criterios = $row['valor_criterios'];
+                              ?>
+
+                  <div class="col-md-12 col-sm-12 col-xs-6">
+                    <div>
+                      <p><?php echo $nome_criterios?></p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=<?php echo $valor_criterios?> ></div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
+                    <?php
+                      }} ?> 
+                
 
                 <div class="clearfix"></div>
               </div>
