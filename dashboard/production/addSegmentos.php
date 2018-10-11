@@ -285,182 +285,87 @@ Somar! </title>
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Cadastrar Pessoa</h3>
+                <h3>Novo Segmento</h3>
               </div></div></div>
 
           
-            <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Entre com os dados da Pessoa </h2>
-                   
+            
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="cadastroPessoas.php">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="cadastroSegmentos.php">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nome Completo <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nome do Segmento <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="nome" name="nome" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="nome_segmento" name="nome_segmento" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-                       <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Login <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="login" class="form-control col-md-7 col-xs-12" type="text" name="login">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Senha <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="senha" name="senha" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-
-
-
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Categoria</label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="nome_categoria" class="btn-group" data-toggle="buttons">
-
-    <?php
-      include('connect.php');
-      $query = "select * from categoria";
-      $result= mysqli_query($conexao, $query);
-      if (mysqli_num_rows($result) > 0) {
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-          $nome_categoria = $row['nome_categoria'];
-          $id = $row['id'];
-          
-    ?>
-                     
-                     
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="nome_categoria" value="<?php echo $nome_categoria?>"> &nbsp; <?php echo $nome_categoria?> &nbsp;
-                            </label>
-    <?php   
-      }}
-    ?>              
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Meta Individual <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number">
-                        </div>
-                      </div>
+                       
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancel</button>
-						                <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
+                          <button class="btn btn-primary" type="button">Cancelar</button>
+						  <button class="btn btn-primary" type="reset">Resetar</button>
+                          <button type="submit" class="btn btn-success">Adicionar</button>
                         </div>
                       </div>
 
                     </form>
-                  </div>
-           
+               
 
            
+<div class="x_content">
+                  <ul class="list-unstyled msg_list">
+                  
+
+
+
+
+<?php
+
+
+ 
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from segmentos";
+                              $result= mysqli_query($conexao, $query);
+
+      if (mysqli_num_rows($result) > 0) {
+        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+           $categoria = $row['nome_segmentos'];
+          $id = $row['id'];
+          $nome_segmentos= $row['nome_segmentos'];
+  
+?>
+                    <li>
+                      <a>
+                        <span class="image">
+                          <img src="images/img.jpg" alt="img" />
+                        </span>
+                        <span>
+                          <span><b><p><?php echo $nome_segmentos?></p></b></span>
+                          
+                        </span>
+                        <span class="message">
+                          O id dele é: <?php echo $id?>
+                        </span>
+                      </a>
+                    </li>
+     <?php
+     }}
+     ?>             
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
             </div>
           </div>
         </div>
-
-<script>
-        $("#dados_funcionarios").DataTable({
-  dom: 'Bfrtip',
-   buttons: [
-       'copy', 'print'
-   ],
-  searching:false,
-language: {
-"sEmptyTable": "Nenhum registro encontrado",
-"sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-"sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-"sInfoFiltered": "(Filtrados de _MAX_ registros)",
-"sInfoPostFix": "",
-"sInfoThousands": ".",
-"sLengthMenu": "_MENU_ resultados por página",
-"sLoadingRecords": "Carregando...",
-"sProcessing": "Processando...",
-"sZeroRecords": "Nenhum registro encontrado",
-"sSearch": "Pesquisar",
-"oPaginate": {
-   "sNext": "Próximo",
-   "sPrevious": "Anterior",
-   "sFirst": "Primeiro",
-   "sLast": "Último"
-},
-"oAria": {
-   "sSortAscending": ": Ordenar colunas de forma ascendente",
-   "sSortDescending": ": Ordenar colunas de forma descendente"
-}
-}
-});
-
-</script>
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Button Example <small>Users</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
-                    </p>
-                    <table id="dados_funcionarios" class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                          <th>Position</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th>Salary</th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-                        <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$320,800</td>
-                        </tr>
-                      
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
         <!-- /page content -->
 
         <!-- footer content -->

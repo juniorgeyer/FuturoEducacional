@@ -69,9 +69,10 @@ include('verifica_login.php');
                       <li><a href="addPessoas.php">Pessoas</a></li>
                       <li><a href="addcategoria.php">Categorias</a></li>
                       <li><a href="addCriterios.php">Critérios Bonificação</a></li>
-                      <li><a href="formADM.php">Administrativo</a></li>
-                      <li><a href="formAcade.php">Administrativo</a></li>
-                  
+                      <li><a href="addSegmentos.php">Segmentos</a></li>
+                      <li><a href="addSerie.php">Série</a></li>
+                      <li><a href="addTurma.php">Turma</a></li>
+
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Editar <span class="fa fa-chevron-down"></span></a>
