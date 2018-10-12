@@ -8,8 +8,6 @@ mysqli_set_charset($conexao, "utf8");
   $senha = mysqli_real_escape_string($conexao, $_POST['senha']);
   $nome =  mysqli_real_escape_string($conexao, $_POST['nome']);
   $nome_categoria =  mysqli_real_escape_string($conexao, $_POST['nome_categoria']);
-  $meta_individual =  mysqli_real_escape_string($conexao, $_POST['meta_individual']);
-  
       
       $query_select = "SELECT login FROM usuarios WHERE login = '$login'";
       $select = mysqli_query($conexao,$query_select);
@@ -22,7 +20,7 @@ mysqli_set_charset($conexao, "utf8");
  
       }else{
 
-       $query = "INSERT INTO usuarios(login,senha,nome,categoria,meta_individual) VALUES ('$login','$senha','$nome','$nome_categoria', '$meta_individual')";
+       $query = "INSERT INTO usuarios(login,senha,nome,categoria) VALUES ('$login','$senha','$nome','$nome_categoria')";
        $insert = mysqli_query($conexao,$query);
          
         if($insert){

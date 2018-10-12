@@ -72,9 +72,19 @@ include('verifica_login.php');
                       <li><a href="addSegmentos.php">Segmentos</a></li>
                       <li><a href="addSerie.php">Série</a></li>
                       <li><a href="addTurma.php">Turma</a></li>
+                      <li><a href="addDisciplina.php">Disciplina</a></li>
 
                     </ul>
                   </li>
+
+                  <li><a><i class="fa fa-exchange"></i> Vincular <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="add_vincularPessoas.php">Pessoas</a></li>
+                     
+
+                    </ul>
+                  </li>
+
                   <li><a><i class="fa fa-edit"></i> Editar <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">General Form</a></li>

@@ -284,15 +284,30 @@ include('verifica_login.php');
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>General Elements</h3>
+                <h3>Todos os funcionários</h3>
               </div>
 </div>
 
+<?php
 
+
+include('connect.php');
+
+
+$query = "select * from usuarios";
+$result= mysqli_query($conexao, $query);
+
+      if (mysqli_num_rows($result) > 0) {
+        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+           $categoria = $row['categoria'];
+          $id = $row['id'];
+          $login= $row['login'];
+          $nome= $row['nome'];
+?>
             
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Lista de Profissionais <small></small></h2>
+                  <h2><?php echo $nome?> <small></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -312,51 +327,30 @@ include('verifica_login.php');
                 </div>
                 <div class="x_content">
                   <ul class="list-unstyled msg_list">
-                  
-
-
-
-
-<?php
-
-
-include('connect.php');
-
-
-$query = "select * from usuarios";
-$result= mysqli_query($conexao, $query);
-
-      if (mysqli_num_rows($result) > 0) {
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-           $categoria = $row['categoria'];
-          $id = $row['id'];
-          $login= $row['login'];
-  
-?>
                     <li>
                       <a>
-                        <span class="image">
-                          <img src="images/img.jpg" alt="img" />
-                        </span>
-                        <span>
-                          <span><b><p><?php echo $login?></p></b></span>
-                          <span class="time"><b><?php echo $categoria?></b></span>
-                        </span>
-                        <span class="message">
-                          O id dele é: <?php echo $id?>
-                        </span>
+                        
                       </a>
                     </li>
-     <?php
-     }}
-     ?>             
                   </ul>
                 </div>
+              
+
+
               </div>
+
+
+
+
+                              <?php
+                                 }}
+                              ?>  
+         
             </div>
-          </div>
+          </div>        
           <div class="clearfix"></div>
         </div>
+  
         <!-- /page content -->
 
         <!-- footer content -->

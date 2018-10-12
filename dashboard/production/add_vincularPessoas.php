@@ -300,64 +300,76 @@ Somar! </title>
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="cadastroPessoas.php">
 
+                     
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nome Completo <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" >Categoria <span class="required" >*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="nome" name="nome" required="required" class="form-control col-md-7 col-xs-12">
+                          <select class="form-control col-md-7 col-xs-12" name="nome_categoria" id="select_id" onchange="adicionaLinha()">
+                              <option></option>
+                             <?php
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from categoria";
+                              $result= mysqli_query($conexao, $query);
+                             if (mysqli_num_rows($result) > 0) {
+                             while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                             $nome_categoria = $row['nome_categoria'];
+                            $id = $row['id'];
+          
+                                  ?>
+                              <option value="<?php echo $nome_categoria?>"><?php echo $nome_categoria?></option>
+                               <?php
+                             }}
+                               ?>
+                          </select>
                         </div>
                       </div>
-                       <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Login <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="login" class="form-control col-md-7 col-xs-12" type="text" name="login">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Senha <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="senha" name="senha" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-
-
 
                         <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Categoria</label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="nome_categoria" class="btn-group" data-toggle="buttons">
-
-    <?php
-      include('connect.php');
-      $conexao->set_charset("utf8");
-      $query = "select * from categoria";
-      $result= mysqli_query($conexao, $query);
-      if (mysqli_num_rows($result) > 0) {
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-          $nome_categoria = $row['nome_categoria'];
-          $id = $row['id'];
-          
-    ?>
-                     
-                     
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="nome_categoria" value="<?php echo $nome_categoria?>"> &nbsp; <?php echo $nome_categoria?> &nbsp;
-                            </label>
-    <?php   
-      }}
-    ?>              
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Meta Individual <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" > Profissionais <span class="required" >*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="meta_individual" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number">
+                          <select class="form-control col-md-7 col-xs-12" name="nome_categoria" id="table">
+                              <option></option>
+                          </select>
                         </div>
                       </div>
+
+                                     
+
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" > Profissionais <span class="required" >*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control col-md-7 col-xs-12" name="nome_categoria" id="">
+                            <?php
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from serie";
+                              $result= mysqli_query($conexao, $query);
+                             if (mysqli_num_rows($result) > 0) {
+                             while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                             $nome_serie = $row['nome_serie'];
+                            $id = $row['id'];
+                             $nome_turma = $row['nome_turma'];
+                                  ?>
+                              <option value="<?php echo $nome_categoria?>"><?php echo $nome_serie, $nome_turma?></option>
+                               <?php
+                             }}
+                               ?>
+                          </select>
+                        </div>
+                      </div>
+                          </select>
+                        </div>
+                      </div>
+
+
+
+
+                    
+                   
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -510,6 +522,8 @@ language: {
     <script src="../vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-	
+    <!-- Completa Variavel -->
+    <script src="js/completa_listview.js"></script>
+    	
   </body>
 </html>
