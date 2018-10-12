@@ -35,7 +35,7 @@ include('verifica_login.php');
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md"">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -281,33 +281,31 @@ include('verifica_login.php');
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
+          <div class="" onchange=''>
+
             <div class="page-title">
               <div class="title_left">
                 <h3>Todos os funcionários</h3>
               </div>
 </div>
-
-<?php
-
-
-include('connect.php');
-
-
-$query = "select * from usuarios";
-$result= mysqli_query($conexao, $query);
-
-      if (mysqli_num_rows($result) > 0) {
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-           $categoria = $row['categoria'];
-          $id = $row['id'];
-          $login= $row['login'];
-          $nome= $row['nome'];
-?>
             
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2><?php echo $nome?> <small></small></h2>
+
+          <?php 
+
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from usuarios";
+                              $result= mysqli_query($conexao, $query);
+                             if (mysqli_num_rows($result) > 0) {
+                             while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                             $nome = $row['nome'];
+                            $id = $row['id'];
+          
+                                  ?>
+          
+              <div class="x_panel" >
+                <div class="x_title" >
+                  <h2><small></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -325,28 +323,16 @@ $result= mysqli_query($conexao, $query);
                   </ul>
                   <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
-                  <ul class="list-unstyled msg_list">
-                    <li>
-                      <a>
-                        
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              
-
-
+               <div class="x_content" >
+                  <ul class="list-unstyled msg_list" >
+                 
+                    </ul>
               </div>
-
-
-
-
-                              <?php
-                                 }}
-                              ?>  
-         
-            </div>
+              </div>
+    <?php
+                             }}
+                               ?>
+          
           </div>        
           <div class="clearfix"></div>
         </div>
@@ -390,6 +376,7 @@ $result= mysqli_query($conexao, $query);
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-	
+    <script src="js/completa_listview.js"></script>
+
   </body>
 </html>
