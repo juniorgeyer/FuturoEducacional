@@ -35,7 +35,7 @@ include('verifica_login.php');
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md"">
+  <body class="nav-md" ">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -208,67 +208,6 @@ include('verifica_login.php');
                   </ul>
                 </li>
 
-<!--                CAIXA DE MENSAGEM
-                <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a> -->
                       </div>
                     </li>
                   </ul>
@@ -280,63 +219,62 @@ include('verifica_login.php');
         <!-- /top navigation -->
 
         <!-- page content -->
+
         <div class="right_col" role="main">
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+   <input id="filtro" class="form-control" type="text" placeholder="Busca Rápida">
+              </div>
+
+
           <div class="" onchange=''>
 
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Todos os funcionários</h3>
-              </div>
-</div>
-            
-
-          <?php 
-
+<div class="x_title">
+     <div class="x_panel">
+             
+   <?php
                               include('connect.php');
                               $conexao->set_charset("utf8");
-                              $query = "select * from usuarios";
+                              $query = "select * from usuarios order by nome";
                               $result= mysqli_query($conexao, $query);
+                           
                              if (mysqli_num_rows($result) > 0) {
+                            
                              while($row = $result->fetch_array(MYSQLI_ASSOC)){
                              $nome = $row['nome'];
                             $id = $row['id'];
-          
                                   ?>
-          
-              <div class="x_panel" >
-                <div class="x_title" >
-                  <h2><small></small></h2>
+                                   <div class="bloco">
+                <div class="x_title">
+                  <h2><?php echo $nome ?> <small></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                 
                     </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+
+                    <li> <button class="btn btn-round btn-primary" onclick=" adicionaPessoasSemCategoria('div<?php echo $nome ?>')">Avaliar </button>
+                    <input class="btn btn-round btn-danger" type="button" id="btngetvalues" value="Salvar" onclick="getValues('div<?php echo $nome ?>');"/></a>
                     </li>
                   </ul>
-                  <div class="clearfix"></div>
+
+                                      <div class="clearfix"></div>
                 </div>
-               <div class="x_content" >
-                  <ul class="list-unstyled msg_list" >
-                 
-                    </ul>
-              </div>
-              </div>
-    <?php
-                             }}
-                               ?>
-          
-          </div>        
-          <div class="clearfix"></div>
-        </div>
+                   
+                   <div class="x_content">
+
+                      <div class="bloco">
+                        <ul class="to_do">
+                          <li>
+                            <p  id='div<?php echo $nome ?>'>
+                              </p>
+                          </li>
+                        </ul>
+                      </div>
   
+                    </div>
+
+              </div>
+<?php  }} ?>
+            </div>
+  </div>
         <!-- /page content -->
 
         <!-- footer content -->
@@ -379,4 +317,74 @@ include('verifica_login.php');
     <script src="js/completa_listview.js"></script>
 
   </body>
+
+<script type="text/javascript">
+$(function(){ 
+  $("#filtro").keyup(function(){
+    var texto = $(this).val();
+    $(".bloco").each(function(){
+      var resultado = $(this).text().toUpperCase().indexOf(' '+texto.toUpperCase());
+      if(resultado < 0) {
+        $(this).fadeOut();
+      }else {
+        $(this).fadeIn();
+      }
+    });  }); });
+</script>
+
 </html>
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ecf0f1;
+}
+
+.busca {
+  padding: 10px;
+  width: 100%;
+  background-color: #1abc9c;
+  margin-bottom: 20px;
+}
+  .busca input {
+    display: block;
+    width: 70%;
+    height: 30px;
+    padding: 0 5px;
+    margin: 0 auto;
+  }
+
+
+.blocos {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+  .blocos .bloco {
+    width: 29%;
+    display: inline-block;
+    background: #16a085;
+    padding: 10px;
+    margin: 5px;
+    transition: all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    cursor: pointer;
+  }
+  .blocos .bloco:hover { transform: scale(1.2); }
+  .blocos h3 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    color: #FFFFFF;
+    padding-bottom: 5px;
+  }
+  .blocos p {
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+  }
+</style>
+
