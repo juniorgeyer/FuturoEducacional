@@ -26,10 +26,20 @@ mysqli_set_charset($conexao, "utf8");
        $insert = mysqli_query($conexao,$query);
          
         if($insert){
-          echo"<script language='javascript' type='text/javascript'>alert('Usuário cadastrado com sucesso!');window.location.href='addPessoas.php'</script>";
+         // echo"<script language='javascript' type='text/javascript'>alert('Usuário cadastrado com sucesso!');window.location.href='addPessoas.php'</script>";
         }else{
-          echo"<script language='javascript' type='text/javascript'>alert('Não foi possível cadastrar esse usuário');window.location.href='addPessoas.php'</script>";
+          //echo"<script language='javascript' type='text/javascript'>alert('Não foi possível cadastrar esse usuário');window.location.href='addPessoas.php'</script>";
         }
+      
+
+
+          $query_select = "SELECT * FROM criterio";
+          $select = mysqli_query($conexao,$query_select);
+          $array = mysqli_fetch_array($select);
+          $logarray = $array['id'];
+          for($i = 0; $i < sizeof($logarray); ++$i)
+              echo "af";
+               echo"<script language='javascript' type='text/javascript'>alert('Numero de criterios!');</script>";
       }
       
     

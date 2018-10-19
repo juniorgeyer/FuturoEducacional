@@ -18,10 +18,8 @@ function adicionaLinha() {
 			});
 	}
 
-function adicionaPessoasSemCategoria(nomeDiv) {
+function adicionaPessoasSemCategoria(nomeDiv, idUsuario) {
 			
-
-				
 	$.ajax({
 					url: "listaPessoas.php",
 					dataType: "json",
@@ -29,16 +27,12 @@ function adicionaPessoasSemCategoria(nomeDiv) {
 						acao: 'consulta',
 										},
 					success: function( data ) {
-						 action=2;
-						// createchkboxes(data,nomeDiv);
-						 create(data,nomeDiv);
-						 
+						 // createchkboxes(data,nomeDiv);
+						 create(data,nomeDiv, idUsuario);
 					}
 			});}
 				
 	
-
-
 function aguarde(nome){
 	var table = document.getElementById("table");
 
@@ -51,19 +45,6 @@ while(table.length>0){
 		}
 	}}
 
-function aguardealista(nome){
-	var table = document.getElementById("table");
-var checkbox = document.createElement('input');
-checkbox.type = "checkbox";
-checkbox.name = "name";
-checkbox.value = "value";
-checkbox.id = "id";
-
-var label = document.createElement('label')
-label.htmlFor = "id";
-label.appendChild(document.createTextNode('text for label after checkbox'));
-
-table.appendChild(checkbox); table.appendChild(label);     }
 
 function myTrim(x) {
   return x.replace(/^\s+|\s+$/gm,'');
@@ -82,6 +63,60 @@ function getValues(divId){
  alert(a);
  }
 
+function salvarValores(divId, idUsuario){
+
+//Primeiro verifica se o usuário já possui algum criterio cadastrado. Se sim, irá limpar os dados para inserir os novos
+		$.ajax({
+  url: "verificaUsuarioCriteriosIndividuais.php",
+					dataType: "json",
+					data: {
+						acao: 'consulta',
+							parametro: idUsuario,
+												},
+					success: function( data ) {
+			}});	
+
+
+   var a=0;
+   var boxes = document.getElementById(divId).getElementsByTagName('input'), vals = [];
+   for(var i = 0; i < boxes.length; ++i){
+   	waitSeconds(100);
+    	a= boxes[i].id;
+
+    		if(boxes[i].checked==true){
+    			var b=1;
+	$.ajax({
+  url: "atualizaCriteriosIndividuais.php",
+					dataType: "json",
+					data: {
+						acao: 'consulta',
+							parametro: idUsuario,
+							 adicionarId: a,
+							  adicionarValor: b
+					},
+					success: function( data ) {
+			}});		}
+
+		else{
+				var b=0;
+$.ajax({
+  url: "atualizaCriteriosIndividuais.php",
+					dataType: "json",
+					data: {
+					acao: 'consulta',
+					parametro: idUsuario,
+					adicionarId: a,
+					adicionarValor: b
+					},
+					success: function( data ) {
+					}
+
+			});
+}
+ }
+ 		alert("Usuário atualizado com sucesso");
+}
+
 function removeValues(divId){
    var a=0;
    var boxes = document.getElementById(divId);
@@ -91,27 +126,54 @@ function removeValues(divId){
  
 }
  
-function create(nome,nomeDiv)
+function create(nome,nomeDiv, idUsuario)
 {
 document.getElementById(nomeDiv).innerHTML = "";
 
+$.ajax({
+					url: "buscaCriteriosIndividuais.php",
+					dataType: "json",
+					data: {
+						acao: 'consulta',
+							parametro: idUsuario
+					},
+					success: function( data ) {
+						 
      for(var i=0; i<nome.length; i++) {
 
         var divTag = document.createElement("div");
 		divTag.className ="filterCheckBoxes";
 
-
 		var cb = document.createElement( "input" );
         cb.type = "checkbox";
-		cb.id = "checkBox"+i;
+		cb.id = nome[i].id;
 		cb.name = nome[i].nome_criterios;
 
 		cb.className="icheckbox_flat-green checked";
+
+		if(data[i].valor_criterio_usuario==1){
 		cb.checked = true;
+		}
+		else{
+			cb.checked=false;
+		}
         cb.value =nome[i].valor_criterios;
 
 		document.getElementById(nomeDiv).appendChild(divTag);
 		divTag.appendChild(cb);
 		divTag.appendChild(document.createTextNode(nome[i].nome_criterios));	 
-     } 
-     }
+    	}
+		}	
+		}
+		);
+ 		 }
+     
+	function waitSeconds(iMilliSeconds) {
+    var counter= 0
+        , start = new Date().getTime()
+        , end = 0;
+    while (counter < iMilliSeconds) {
+        end = new Date().getTime();
+        counter = end - start;
+    }
+}

@@ -236,8 +236,7 @@ include('verifica_login.php');
                               $conexao->set_charset("utf8");
                               $query = "select * from usuarios order by nome";
                               $result= mysqli_query($conexao, $query);
-                           
-                             if (mysqli_num_rows($result) > 0) {
+                              if (mysqli_num_rows($result) > 0) {
                             
                              while($row = $result->fetch_array(MYSQLI_ASSOC)){
                              $nome = $row['nome'];
@@ -245,13 +244,15 @@ include('verifica_login.php');
                                   ?>
                                    <div class="bloco">
                 <div class="x_title">
+                  
                   <h2><?php echo $nome ?> <small></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                  
                     </li>
-
-                    <li> <button class="btn btn-round btn-primary" onclick=" adicionaPessoasSemCategoria('div<?php echo $nome ?>')">Avaliar </button>
-                    <input class="btn btn-round btn-danger" type="button" id="btngetvalues" value="Salvar" onclick="getValues('div<?php echo $nome ?>');"/></a>
+                    
+                    <li> <button class="btn btn-round btn-primary" onclick="adicionaPessoasSemCategoria('div<?php echo $nome ?>','<?php echo $id ?>')">Avaliar </button>
+                    <input class="btn btn-round btn-danger" type="button" id="btngetvalues" value="Conferir" onclick="getValues('div<?php echo $nome ?>');"/></a>
+                    <button class="btn btn-round btn-sucess" onclick="salvarValores('div<?php echo $nome ?>','<?php echo $id ?>')">Salvar </button>
                     </li>
                   </ul>
 
@@ -262,8 +263,8 @@ include('verifica_login.php');
 
                       <div class="bloco">
                         <ul class="to_do">
-                          <li>
-                            <p  id='div<?php echo $nome ?>'>
+                          <li  >
+                            <p id='div<?php echo $nome ?>' >
                               </p>
                           </li>
                         </ul>
