@@ -2,6 +2,13 @@ function myFunction(nome) {
  alert(nome);
 }
 
+//Função chamada no inicio do INDEX.php
+function inicia(){
+	mediaIndex();
+	quantidadeUsuario();
+	mediaEsperada();
+}
+
 function adicionaLinha() {
 	
 		$.ajax({
@@ -45,6 +52,52 @@ while(table.length>0){
 		table.add(option);
 		}
 	}}
+
+
+	function mediaIndex(){
+		var div = document.getElementById("mediaindex"); 
+		$.ajax({
+  		url: "../production/Control/MediaFuncionarios.php",
+					dataType: "json",
+					data: {
+												},
+					success: function( data ) {
+						console.log(data);
+								div.innerHTML ="R$"+ data[0].MediaGeral;
+
+			}});
+
+	}
+
+	function mediaEsperada(){
+		var div = document.getElementById("mediaesperada"); 
+		$.ajax({
+  		url: "../production/Control/MediaEsperada.php",
+					dataType: "json",
+					data: {
+												},
+					success: function( data ) {
+						console.log(data);
+								div.innerHTML ="R$"+ data[0].MediaGeral+".00";
+
+			}});
+
+	}
+
+	function quantidadeUsuario(){
+		var div = document.getElementById("quantidadeUsuario"); 
+		$.ajax({
+  		url: "../production/Control/QuantidadeUsuarios.php",
+					dataType: "json",
+					data: {
+												},
+					success: function( data ) {
+						console.log(data);
+								div.innerHTML = data[0].MediaGeral;
+
+			}});
+
+	}
 
 
 function myTrim(x) {
@@ -98,10 +151,10 @@ function salvarValores(divId, idUsuario){
 					success: function( data ) {
 			}});		}
 
-		else{
-				var b=0;
-$.ajax({
-  url: "atualizaCriteriosIndividuais.php",
+				else{
+					var b=0;
+					$.ajax({
+					url: "atualizaCriteriosIndividuais.php",
 					dataType: "json",
 					data: {
 					acao: 'consulta',
@@ -111,10 +164,32 @@ $.ajax({
 					},
 					success: function( data ) {
 					}
+					});
+				}
+ 				}
+
+
+ 			//Irá receber os valores das checkbox e salvar a soma na tabela usuarios, em criterios_individuais
+  			var a=0;
+   			var boxes = document.getElementById(divId).getElementsByTagName('input'), vals = [];
+   			for(var i = 0; i < boxes.length; ++i){
+    		if(boxes[i].checked==true){
+      		vals.push(boxes[i].value);
+      		a= a+ Number(boxes[i].value);
+   			}}
+   			$.ajax({
+  					url: "Control/atualizaMediaIndividual.php",
+					dataType: "json",
+					data: {
+					acao: 'consulta',
+					parametro: idUsuario,
+					adicionarValor: a
+					},
+					success: function( data ) {
+					}
 
 			});
-}
- }
+
  		alert("Usuário atualizado com sucesso");
 }
 
