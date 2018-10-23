@@ -12,7 +12,6 @@ function adicionaLinha() {
 							parametro: $('#select_id').val()
 					},
 					success: function( data ) {
-						 
 						 aguarde(data);
 					}
 			});
@@ -35,13 +34,15 @@ function adicionaPessoasSemCategoria(nomeDiv, idUsuario) {
 	
 function aguarde(nome){
 	var table = document.getElementById("table");
-
+		console.log(nome);
 while(table.length>0){	
 	table.remove(i);
 }
 	for(var i=0;i<nome.length;i++){
 	if(nome != null ){
 	var option = document.createElement("option");
+		option.text =  nome[i].nome;
+		table.add(option);
 		}
 	}}
 

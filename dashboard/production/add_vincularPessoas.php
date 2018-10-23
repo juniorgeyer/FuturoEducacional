@@ -360,17 +360,39 @@ Somar! </title>
                              }}
                                ?>
                           </select>
-                        </div>
+                        </div> 
                       </div>
+                         
+
+    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" >Disciplina <span class="required" >*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control col-md-7 col-xs-12" name="nome_disciplina" id="nome_disciplina" onchange="">
+                              <option></option>
+                             <?php
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from disciplina";
+                              $result= mysqli_query($conexao, $query);
+                             if (mysqli_num_rows($result) > 0) {
+                             while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                             $nome_disciplina = $row['nome_disciplina'];
+                            $id = $row['id'];
+          
+                                  ?>
+                              <option value="<?php echo $nome_disciplina?>"><?php echo $nome_disciplina?></option>
+                               <?php
+                             }}
+                               ?>
                           </select>
                         </div>
                       </div>
 
+                        </div>
+                      </div>
 
 
-
-                    
-                   
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -389,39 +411,6 @@ Somar! </title>
           </div>
         </div>
 
-<script>
-        $("#dados_funcionarios").DataTable({
-  dom: 'Bfrtip',
-   buttons: [
-       'copy', 'print'
-   ],
-  searching:false,
-language: {
-"sEmptyTable": "Nenhum registro encontrado",
-"sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-"sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-"sInfoFiltered": "(Filtrados de _MAX_ registros)",
-"sInfoPostFix": "",
-"sInfoThousands": ".",
-"sLengthMenu": "_MENU_ resultados por página",
-"sLoadingRecords": "Carregando...",
-"sProcessing": "Processando...",
-"sZeroRecords": "Nenhum registro encontrado",
-"sSearch": "Pesquisar",
-"oPaginate": {
-   "sNext": "Próximo",
-   "sPrevious": "Anterior",
-   "sFirst": "Primeiro",
-   "sLast": "Último"
-},
-"oAria": {
-   "sSortAscending": ": Ordenar colunas de forma ascendente",
-   "sSortDescending": ": Ordenar colunas de forma descendente"
-}
-}
-});
-
-</script>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">

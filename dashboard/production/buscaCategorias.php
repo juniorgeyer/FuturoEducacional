@@ -28,7 +28,7 @@ if($acao == 'autocomplete'):
 endif;
 
 if($acao == 'consulta'):
-  $sql = "SELECT * FROM usuarios WHERE id LIKE '%$parametro%'";
+  $sql = "SELECT * FROM usuarios WHERE categoria LIKE '%$parametro%'";
 
 	$stm = $conexao->prepare($sql);
 	//$stm->bindValue(1, $parametro.'%');
