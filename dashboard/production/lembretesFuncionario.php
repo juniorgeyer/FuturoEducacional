@@ -285,7 +285,7 @@ Somar! </title>
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Cadastrar Pessoa</h3>
+                <h3>Cadastrar Vínculo</h3>
               </div></div></div>
 
           
@@ -294,11 +294,11 @@ Somar! </title>
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Entre com os dados da Pessoa </h2>
+                    <h2>Entre com os dados do Vínculo </h2>
                    
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="cadastroPessoas.php">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="Control/cadastroVinculo.php">
 
                      
                       <div class="form-group">
@@ -330,7 +330,7 @@ Somar! </title>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" > Profissionais <span class="required" >*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control col-md-7 col-xs-12" name="nome_categoria" id="table">
+                          <select class="form-control col-md-7 col-xs-12" name="nome_profissionais"  id="table">
                               <option></option>
                           </select>
                         </div>
@@ -342,7 +342,7 @@ Somar! </title>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" > Turmas <span class="required" >*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control col-md-7 col-xs-12" name="nome_categoria" id="">
+                          <select class="form-control col-md-7 col-xs-12" name="turma" id="">
                                   <option></option>
                             <?php
                               include('connect.php');
@@ -364,7 +364,7 @@ Somar! </title>
                       </div>
                          
 
-                         <div class="form-group">
+    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" >Disciplina <span class="required" >*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -388,19 +388,6 @@ Somar! </title>
                           </select>
                         </div>
                       </div>
-
-
-
-                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" >Disciplina <span class="required" >*</span>
-                        </label>
-
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="date" name="">
-                        </div>
-                      </div>
-
-
 
                         </div>
                       </div>

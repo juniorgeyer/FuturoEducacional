@@ -294,6 +294,27 @@ Somar! </title>
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="Control/cadastroMediaGeral.php">
 
+                        <div class="form-group">
+                           <?php
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from media_geral";
+                              $result= mysqli_query($conexao, $query);
+                             if (mysqli_num_rows($result) > 0) {
+                             while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                             $valor_media_geral = $row['valor_media_geral'];
+                            
+          
+                                  ?>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Média atual: <?php echo $valor_media_geral?>
+                               <?php
+                             }}
+                               ?>
+                     
+                        </label>
+                        
+                      </div>
+
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Média <span class="required">*</span>
                         </label>
@@ -307,7 +328,7 @@ Somar! </title>
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button class="btn btn-primary" type="button">Cancelar</button>
 				                	  <button class="btn btn-primary" type="reset">Resetar</button>
-                          <button type="submit" class="btn btn-success">Adicionar</button>
+                          <button type="submit" class="btn btn-success">Atualizar</button>
                         </div>
                       </div>
 
