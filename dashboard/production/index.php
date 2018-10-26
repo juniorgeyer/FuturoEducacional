@@ -238,18 +238,7 @@ include('verifica_login.php');
             <!--  <span class="count_bottom"><i class="green">4% </i> From last Week</span>-->
             </div>
 
-
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-money"></i> Média Funcionarios</span>
-              <div class="count"><a class="green" id="mediaindex"> </a></div>
-
-            </div>
-
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Média Esperada</span>
-              <div class="count red" id="mediaesperada"></div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+ <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Mulheres na Empresa</span>
               <div class="count" id="quantidademulheres"><a class=""></a></div>
             </div>
@@ -258,11 +247,21 @@ include('verifica_login.php');
               <span class="count_top"><i class="fa fa-user"></i> Homens na Empresa</span>
               <div class="count" id="quantidadehomens"></div>
             </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-money"></i> Média Funcionários</span>
+              <div class="count"><a class="green" id="mediaindex"> </a></div>
+
+            </div>
+
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Média Esperada</span>
+              <div class="count red" id="mediaesperada"></div>
+            </div>
+           
           
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-              <div class="count">7,325</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i> Relação entre médias</span>
+              <div class="count" id="mediarelacao"></div>
             </div>
           </div>
           <!-- /top tiles -->
@@ -296,21 +295,21 @@ include('verifica_login.php');
                               <?php
                               include('connect.php');
                               $conexao->set_charset("utf8");
-                              $query = "select * from criterio";
+                              $query = "select  * from usuarios order by criterios_individuais DESC limit 5";
                               $result= mysqli_query($conexao, $query);
                               
                                 if (mysqli_num_rows($result) > 0) {
                                   while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                                    $nome_criterios = $row['nome_criterios'];
-                                    $valor_criterios = $row['valor_criterios'];
+                                    $nome = $row['nome'];
+                                    $criterios_individuais = $row['criterios_individuais'];
                               ?>
 
                   <div class="col-md-12 col-sm-12 col-xs-6">
                     <div>
-                      <p><?php echo $nome_criterios?></p>
+                      <p><?php echo $nome?></p>
                       <div class="">
                         <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=<?php echo $valor_criterios?> ></div>
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal=<?php echo $criterios_individuais?> ></div>
                         </div>
                       </div>
                     </div>

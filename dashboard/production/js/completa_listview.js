@@ -9,6 +9,7 @@ function inicia(){
 	mediaEsperada();
 	quantidademulheres();
 	quantidadehomens();
+	mediaRelacao();
 }
 
 function adicionaLinha() {
@@ -64,7 +65,6 @@ while(table.length>0){
 					data: {
 												},
 					success: function( data ) {
-						console.log(data);
 								div.innerHTML ="R$"+ data[0].MediaGeral;
 
 			}});
@@ -79,12 +79,40 @@ while(table.length>0){
 					data: {
 												},
 					success: function( data ) {
-						console.log(data);
 								div.innerHTML ="R$"+ data[0].MediaGeral+".00";
 
 			}});
 
 	}
+	
+	//A funcao mediaRelacao recebera a media dos funcionarios e irá enviar para mediaRelacao2 que calcula a media esperada
+	function mediaRelacao(){
+		$.ajax({
+  		url: "../production/Control/MediaFuncionarios.php",
+		dataType: "json",
+		data: {	},
+		success: function( data ) {
+		var a = data[0].MediaGeral;
+		mediaRelacao2(a);
+		}});
+	function mediaRelacao2(a){
+					var div = document.getElementById("mediarelacao"); 
+					$.ajax({
+  					url: "../production/Control/MediaEsperada.php",
+					dataType: "json",
+					data: {	},
+					success: function( data ) {
+					var b = data[0].MediaGeral;
+					//var c = a/b;
+					div.innerHTML = (parseFloat(a) / parseFloat(b)).toFixed(2);
+
+
+					}});
+					
+		}
+
+	}
+
 
 	function quantidadeUsuario(){
 		var div = document.getElementById("quantidadeUsuario"); 
@@ -94,7 +122,6 @@ while(table.length>0){
 					data: {
 												},
 					success: function( data ) {
-						console.log(data);
 								div.innerHTML = data[0].MediaGeral;
 
 			}});

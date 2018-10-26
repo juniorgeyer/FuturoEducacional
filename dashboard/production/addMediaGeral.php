@@ -288,47 +288,52 @@ Somar! </title>
                 <h3>Média Geral</h3>
               </div></div></div>
 
-          
+           <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Exemplo: Se a media for menor que 25 e maior que 15, bonificação será de 25 </h2>
             
                   <div class="x_content">
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="Control/cadastroMediaGeral.php">
 
-                        <div class="form-group">
-                           <?php
-                              include('connect.php');
-                              $conexao->set_charset("utf8");
-                              $query = "select * from media_geral";
-                              $result= mysqli_query($conexao, $query);
-                             if (mysqli_num_rows($result) > 0) {
-                             while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                             $valor_media_geral = $row['valor_media_geral'];
-                            
-          
-                                  ?>
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Média atual: <?php echo $valor_media_geral?>
-                               <?php
-                             }}
-                               ?>
-                     
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Se a media for maior que <span class="required">*</span>
                         </label>
-                        
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" id="maior_que" name="maior_que" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Média <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">E menor que <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="valor_media" name="valor_media" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="menor_que" name="menor_que" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                        
+
+                    
+
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">A bonificação será de <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" id="valor_bonificacao" name="valor_bonificacao" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button class="btn btn-primary" type="button">Cancelar</button>
 				                	  <button class="btn btn-primary" type="reset">Resetar</button>
-                          <button type="submit" class="btn btn-success">Atualizar</button>
+                          <button type="submit" class="btn btn-success">Cadastrar</button>
                         </div>
                       </div>
 
@@ -338,7 +343,62 @@ Somar! </title>
               </div>
             </div>
 
-           
+                <div class="clearfix"></div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Condições já cadastradas </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Menor que</th>
+                          <th>Maior que</th>
+                          <th>Valor bonificacao</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      
+                          <?php
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from media_geral";
+                              $result= mysqli_query($conexao, $query);
+                              if (mysqli_num_rows($result) > 0) {
+                            
+                             while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                             $menor_que = $row['menor_que'];
+                            $maior_que = $row['maior_que'];
+                            $valor_bonificacao = $row['valor_bonificacao'];
+                                  ?>
+
+                        <tr>
+                          <td><?php echo $menor_que ?> </td>
+                          <td><?php echo $maior_que ?></td>
+                          <td><?php echo $valor_bonificacao ?></td>
+                        </tr>
+
+                        <?php  }} ?>
+
+                      
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
