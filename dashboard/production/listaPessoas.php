@@ -1,7 +1,7 @@
 <?php
 
 define('SERVER', '127.0.0.1');
-define('USER', 'admin');
+define('USER', 'id3774601_admin');
 define('PASSWORD','admin');
 define('DBNAME', 'futuro');
 

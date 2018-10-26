@@ -323,34 +323,45 @@ Somar! </title>
 
 
 
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Categoria</label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="nome_categoria" class="btn-group" data-toggle="buttons">
-
-    <?php
-      include('connect.php');
-      $conexao->set_charset("utf8");
-      $query = "select * from categoria";
-      $result= mysqli_query($conexao, $query);
-      if (mysqli_num_rows($result) > 0) {
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-          $nome_categoria = $row['nome_categoria'];
-          $id = $row['id'];
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" >Categoria <span class="required" >*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control col-md-7 col-xs-12" name="nome_categoria" id="select_id" onchange="adicionaLinha()">
+                              <option></option>
+                             <?php
+                              include('connect.php');
+                              $conexao->set_charset("utf8");
+                              $query = "select * from categoria";
+                              $result= mysqli_query($conexao, $query);
+                             if (mysqli_num_rows($result) > 0) {
+                             while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                             $nome_categoria = $row['nome_categoria'];
+                            $id = $row['id'];
           
-    ?>
-                     
-                     
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="nome_categoria" value="<?php echo $nome_categoria?>"> &nbsp; <?php echo $nome_categoria?> &nbsp;
-                            </label>
-    <?php   
-      }}
-    ?>              
-
-                          </div>
+                                  ?>
+                              <option value="<?php echo $nome_categoria?>"><?php echo $nome_categoria?></option>
+                               <?php
+                             }}
+                               ?>
+                          </select>
                         </div>
                       </div>
+
+
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" >Sexo <span class="required" >*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control col-md-7 col-xs-12" name="sexo" id="sexo">
+                              <option></option>
+                              <option value="Feminino">Feminino</option>
+                              <option value="Masculino">Masculino</option>
+                          </select>
+                        </div>
+                      </div>
+
+
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Meta Individual <span class="required">*</span>
                         </label>
@@ -377,57 +388,7 @@ Somar! </title>
         </div>
 
 </script>
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Button Example <small>Users</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
-                    </p>
-                    <table id="dados_funcionarios" class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                          <th>Position</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th>Salary</th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-                        <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$320,800</td>
-                        </tr>
-                      
-                      </tbody>
-                    </table>
-                  </div>
+         
                 </div>
               </div>
         <!-- /page content -->

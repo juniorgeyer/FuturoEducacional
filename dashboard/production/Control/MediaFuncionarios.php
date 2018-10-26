@@ -1,13 +1,6 @@
 <?php
+include('connectJS.php');
 
-define('SERVER', '127.0.0.1');
-define('USER', 'admin');
-define('PASSWORD','admin');
-define('DBNAME', 'futuro');
-
-// Configura uma conexão com o banco de dados
-$opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
-$conexao = new PDO("mysql:host=".SERVER."; dbname=".DBNAME, USER, PASSWORD, $opcoes);
 
 // Verifica se foi solicitado uma consulta para o autocomplete
 

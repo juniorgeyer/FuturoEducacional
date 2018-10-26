@@ -298,7 +298,7 @@ Somar! </title>
                    
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="cadastroPessoas.php">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left " method="POST" action="Control/cadastroVinculo.php">
 
                      
                       <div class="form-group">
@@ -330,7 +330,7 @@ Somar! </title>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" > Profissionais <span class="required" >*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control col-md-7 col-xs-12" name="nome_categoria" id="table">
+                          <select class="form-control col-md-7 col-xs-12" name="nome_profissionais" id="table">
                               <option></option>
                           </select>
                         </div>
@@ -342,7 +342,7 @@ Somar! </title>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" > Turmas <span class="required" >*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control col-md-7 col-xs-12" name="nome_categoria" id="">
+                          <select class="form-control col-md-7 col-xs-12" name="turma" id="">
                                   <option></option>
                             <?php
                               include('connect.php');
@@ -355,7 +355,7 @@ Somar! </title>
                             $id = $row['id'];
                              $nome_turma = $row['nome_turma'];
                                   ?>
-                              <option value="<?php echo $nome_categoria?>"><?php echo $nome_serie, $nome_turma?></option>
+                              <option value="<?php echo $id?>"><?php echo $nome_serie, $nome_turma?></option>
                                <?php
                              }}
                                ?>

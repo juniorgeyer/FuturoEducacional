@@ -2,7 +2,6 @@
  
 session_start();
 include('connect.php');
-mysqli_set_charset($conexao, "utf8");
 
   $valor_media = mysqli_real_escape_string($conexao, $_POST['valor_media']);
   

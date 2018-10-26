@@ -5,5 +5,5 @@ define('USUARIO', 'admin');
 define('SENHA','admin');
 define('DB', 'futuro');
 
-$conexao = mysqli_connect(HOST,USUARIO,SENHA,DB) or die('Nao foi possivel conectar');
-
+$opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
+$conexao = new PDO("mysql:host=".HOST."; dbname=".DB, USUARIO, SENHA, $opcoes);

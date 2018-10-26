@@ -9,7 +9,8 @@ mysqli_set_charset($conexao, "utf8");
   $nome =  mysqli_real_escape_string($conexao, $_POST['nome']);
   $nome_categoria =  mysqli_real_escape_string($conexao, $_POST['nome_categoria']);
   $meta_individual =  mysqli_real_escape_string($conexao, $_POST['meta_individual']);
-  
+  $sexo =  mysqli_real_escape_string($conexao, $_POST['sexo']);
+
       //PROCURA SE LOGIN JÁ EXISTE    
       $query_select = "SELECT * FROM usuarios WHERE login = '$login'";
       $select = mysqli_query($conexao,$query_select);
@@ -23,7 +24,7 @@ mysqli_set_charset($conexao, "utf8");
       }
 
 else{
-       $query = "INSERT INTO usuarios(login,senha,nome,categoria,meta_individual) VALUES ('$login','$senha','$nome','$nome_categoria', '$meta_individual')";
+       $query = "INSERT INTO usuarios(login,senha,nome,categoria,meta_individual,sexo) VALUES ('$login','$senha','$nome','$nome_categoria', '$meta_individual','$sexo')";
        $insert = mysqli_query($conexao,$query);
         if($insert){
          echo"<script language='javascript' type='text/javascript'>alert('Usuário cadastrado com sucesso!');window.location.href='addPessoas.php'</script>";

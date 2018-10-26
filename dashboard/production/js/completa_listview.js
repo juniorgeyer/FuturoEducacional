@@ -7,6 +7,8 @@ function inicia(){
 	mediaIndex();
 	quantidadeUsuario();
 	mediaEsperada();
+	quantidademulheres();
+	quantidadehomens();
 }
 
 function adicionaLinha() {
@@ -94,6 +96,36 @@ while(table.length>0){
 					success: function( data ) {
 						console.log(data);
 								div.innerHTML = data[0].MediaGeral;
+
+			}});
+
+	}
+
+	function quantidademulheres(){
+		var div = document.getElementById("quantidademulheres"); 
+		
+		$.ajax({
+  		url: "../production/Control/QuantidadeMulheres.php",
+					dataType: "json",
+					data: {
+												},
+					success: function( data ) {
+							div.innerHTML = data[0].QuantidadeMulheres;
+
+			}});
+
+	}
+
+	function quantidadehomens(){
+		var div = document.getElementById("quantidadehomens"); 
+		
+		$.ajax({
+  		url: "../production/Control/QuantidadeHomens.php",
+					dataType: "json",
+					data: {
+												},
+					success: function( data ) {
+							div.innerHTML = data[0].QuantidadeHomens;
 
 			}});
 
